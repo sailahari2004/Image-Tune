@@ -20,4 +20,4 @@ Arrange images in the desired order before conversion.
 
 # Technologies Used
 Frontend: HTML, CSS, JavaScript
-Backend: Node.js / PHP (or specify based on your implementation)
+Backend:PHP 
