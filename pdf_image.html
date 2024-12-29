@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to Image</title>
+    <link rel="icon" type="image" href="images/image_pdf.png">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="tool_styles.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&family=Uchen&display=swap" rel="stylesheet">
+
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+</head>
+<body style="background-color: #ffe4e1;">
+    <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+    <script>
+        fetch("navbar.html")
+            .then(response => response.text())
+            .then(data => document.getElementById("navbar-placeholder").innerHTML = data);
+    </script>
+
+    <h1 style="text-align: center; color: #b72458; padding-top: 30px; font-size:50px; font-family: 'Uchen', serif;"><b>PDF to Image</b></h1>
+    <p style="text-align:center; color:#b72458; padding-top: 10px; font-size: 25px;">Convert your <b><u>PDF</u></b> into an image with high quality</p>
+    
+    <!-- Upload Section -->
+    <div class="container text-center">
+        <button id="custom-btn" class="btn btn-primary mt-3">Choose a file</button>
+        <input type="file" id="file-input" accept="application/pdf" hidden>
+        <button type="button" id="convertBtn" class="btn btn-success mt-3">Convert</button>
+    </div>
+
+    <!-- Upload Message -->
+    <div id="uploadMessage" style="text-align: center; color: #b72458; font-size: 20px; display: none;">
+        <p>PDF is uploaded!...</p>
+    </div>
+
+    <script>
+        const customBtn = document.getElementById('custom-btn');
+        const fileInput = document.getElementById('file-input');
+        const convertBtn = document.getElementById('convertBtn');
+        const uploadMessage = document.getElementById('uploadMessage');
+
+        customBtn.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', function () {
+            if (this.files[0]) {
+                uploadMessage.style.display = 'block';
+            } else {
+                uploadMessage.style.display = 'none';
+            }
+        });
+
+        convertBtn.addEventListener('click', async () => {
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert("Please upload a PDF file first.");
+                return;
+            }
+
+            try {
+                const fileReader = new FileReader();
+                fileReader.onload = async function (event) {
+                    const arrayBuffer = event.target.result;
+                    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                    const page = await pdf.getPage(1);
+                    const viewport = page.getViewport({ scale: 2 });
+
+                    const canvas = document.createElement('canvas');
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+
+                    const context = canvas.getContext('2d');
+                    await page.render({ canvasContext: context, viewport }).promise;
+
+                    const imgData = canvas.toDataURL('image/png');
+
+                    // Create a download link
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = imgData;
+                    downloadLink.download = 'converted_image.png';
+                    downloadLink.click();
+                };
+
+                fileReader.readAsArrayBuffer(file);
+            } catch (error) {
+                console.error("Error during conversion:", error);
+                alert("An error occurred while processing the PDF. Please try again.");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Uchen", serif;
+}
+body{
+    background-color:#ffe4e1;
+
+}
+/*navbar*/
+.navbar{
+    height: 50px;
+    background-color: #b72458;
+    padding-left: 25px;
+    font-weight: bold;
+
+}
+.navbar-nav {
+    margin-left: 50px;
+}
+#logo{
+    font-size:23px;
+    color:white;
+
+}
+#logo img{
+    margin-bottom:2px;
+}
+.navbar-nav{
+    margin-left:10px;
+}
+.nav-link{
+    color:#ffe4e1;
+    font-weight:bold;
+    text-shadow: 1px 1px 1px black;
+    margin-left: 15px;
+    transition:0.5s ease;
+}
+.nav-link:hover{
+    background-color: #ffb6c1;
+    color:white;
+    border-radius: 5px;
+}
+
+
+/*navbar end*/
+/*Top Cards*/
+#box{
+    margin-top:50px;
+}
+#box .card{
+    box-shadow:0px 0px 5px black;
+    margin-top: 10px;
+    transition:0.5s ease;
+    cursor:pointer;
+}
+#box .card:hover{
+    transform:translateY(-10px);
+}
+/*Top Cards End*/
+/*Tool Cards*/
+#tool-cards h1{
+    text-align: center;
+    font-weight:bold;
+    margin-top:50px;
+    color:#b72458;
+    text-shadow: 1px 1px 1px black;
+    border-bottom: 2px solid #b72458;
+}
+
+
+#tool-cards .card{
+    background-color:#ffb6c1;
+    box-shadow:0 0 3px black;
+    border-radius:5px;
+    transition:0.5s ease;
+    cursor: pointer;
+}
+#tool-cards .card:hover{
+    opacity:1;
+    margin-left:5%;
+    transition:0.5s ease;
+    
+}
+#tool-cards h3{
+    color:#b72458;
+    text-shadow: 1px 1px 1px black;
+}
+#tools-card p{
+    color:#b72458;
+    font-weight:bold;
+    
+
+}
+
+/*Tool Cards Ends*/

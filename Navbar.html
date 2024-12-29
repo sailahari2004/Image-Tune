@@ -1,0 +1,89 @@
+
+<html>
+ <head>
+    <style>
+        *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Uchen', sans-serif;
+}
+        
+/*navbar*/
+.navbar{
+  height: 50px;
+  background-color: #b72458;
+  padding-left: 25px;
+  font-weight: bold;
+
+}
+.navbar-nav {
+  margin-left: 50px;
+}
+#logo{
+  font-size:23px;
+  color:white;
+
+}
+#logo img{
+  margin-bottom:2px;
+}
+.navbar-nav{
+  margin-left:10px;
+}
+.nav-link{
+  color:#ffe4e1;
+  font-weight:bold;
+  text-shadow: 1px 1px 1px black;
+  margin-left: 15px;
+  transition:0.5s ease;
+}
+.nav-link:hover{
+  background-color: #ffb6c1;
+  color:white;
+  border-radius: 5px;
+}
+
+
+/*navbar end*/
+    </style>
+ </head>
+<body>  
+    <nav class="navbar navbar-expand-sm" id="navbar" >
+        <!--Brand-->
+        <a class="navbar-brand" href="#" id="logo" ><img src="./images/Image_Title.png" alt="" width="180px" height="36px"></a>
+         <!--Toggler/collapsibe button-->
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span><img src="./images/menu.png" alt="" width="30px"></span>
+        </button>
+        <!--Navbar Links-->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav mx-auto order-15" >
+                <li class="nav-item">
+                    <a class="nav-link" href="Home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="compress.php">Compress</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="resize.php">Resize</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Rotate.php">Rotate</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pdf_image.html">Pdf to Image</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="image_to_pdf.html">Image to pdf</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+</body>
+</html
+>
